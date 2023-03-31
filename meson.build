@@ -15,6 +15,6 @@ exe = executable(
   link_with: asmjit,
   include_directories : incdir,
    cpp_args: ['-DASMJIT_STATIC'],
-  install : true)
+  install : false)
 
 test('basic', exe)
