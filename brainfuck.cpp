@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
   optionsDesc.add_options()("help,h", "display this help message")(
       "source,s", po::value<fs::path>(), "source file to compile")(
       "size", po::value<std::uint32_t>()->default_value(30000),
-      "size of stack")("log", "describes whether to log instructions")(
+      "size of stack")(
       "output,o", po::value<fs::path>(),
       "describes a path to the log file (if emitted, output to stdout)");
 
