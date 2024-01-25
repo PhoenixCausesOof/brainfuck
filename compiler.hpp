@@ -1,12 +1,11 @@
 #pragma once
 
 #include <asmjit/asmjit.h>
-#include <cstddef>
+#include <cstdint>
 #include <iostream>
-#include <memory>
 #include <vector>
 
-namespace hayai {
+namespace compiler {
 using namespace asmjit;
 
 class Handler : public ErrorHandler {
@@ -15,7 +14,7 @@ public:
     std::cerr << message << '\n';
   }
 };
-class Context {
+class Compiler {
 public:
   using compiler_type = x86::Compiler;
 
@@ -38,7 +37,7 @@ private:
   static inline auto s_getchar() { return std::cin.get(); }
 
 public:
-  Context(std::uint32_t size) : m_size(size) {
+  Compiler(std::uint32_t size) : m_size(size) {
     m_code.init(m_jit.environment(), m_jit.cpuFeatures());
     m_code.setLogger(&m_logger);
     m_code.setErrorHandler(&m_handler);
@@ -72,7 +71,7 @@ public:
 
       return count;
     };
-    
+
     while (first != last) {
 
 #define COUNT(c) (count_fn(first, last, c))
@@ -136,7 +135,7 @@ public:
 
     cc.endFunc();
     cc.finalize();
-    
+
     return m_jit.add(&m_main, &m_code);
   }
 
@@ -145,6 +144,4 @@ public:
       m_main();
   }
 };
-} // namespace hayai
-
-// namespace hayai
+} // namespace compiler

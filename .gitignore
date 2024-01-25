@@ -1,2 +1,3 @@
-# because I use clangd
-.cache
+.cache/
+.vscode/
+build/

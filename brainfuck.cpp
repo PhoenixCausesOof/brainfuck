@@ -1,9 +1,9 @@
-#include "context.hpp"
 #include <boost/program_options.hpp>
 #include <chrono>
 #include <filesystem>
 #include <fstream>
 
+#include "compiler.hpp"
 
 int main(int argc, char **argv) {
   std::ios::sync_with_stdio(false);
@@ -46,7 +46,7 @@ int main(int argc, char **argv) {
     throw std::runtime_error("source file doesn't exist");
 
 
-  hayai::Context ctx(variableMap["size"].as<std::uint32_t>());
+  compiler::Compiler ctx(variableMap["size"].as<std::uint32_t>());
 
   using namespace std::chrono;
   const auto compBegin = high_resolution_clock::now();
