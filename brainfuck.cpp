@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
       "size", po::value<std::uint32_t>()->default_value(30000),
       "size of stack")(
       "output,o", po::value<fs::path>(),
-      "describes a path to the log file (if emitted, output to stdout)");
+      "describes a path to the log file (if omitted, falls back to stdout)");
 
   po::positional_options_description posDesc;
   posDesc.add("source", 1);
